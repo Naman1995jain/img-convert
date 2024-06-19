@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>File Dropzone with Simple Header</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Simple Header -->
+    <header class="simple-header">
+        <h1>File Conversion Tool</h1>
+    </header>
+
+    <!-- Main Content -->
+    <main class="content">
+        <!-- File Dropzone -->
+        <form class="dropzone-box">
+            <h2>Upload file</h2>
+            <p>Click to upload or drag and drop</p>
+            <div class="dropzone-area">
+                <div class="file-upload-icon">
+                    <!-- svg file upload -->
+                </div>
+                <input type="file" required id="upload-file" name="uploaded-file" accept="image/*">
+                <p class="file-info">No Files Selected</p>
+            </div>
+            <div class="dropzone-description">
+                <span></span>
+            </div>
+            <div class="dropzone-actions">
+                <button type="button" id="convert-png">PNG</button>
+                <button type="button" id="convert-jpg">JPG</button>
+                <button type="button" id="convert-svg">SVG</button>
+                <button type="button" id="convert-webp">WebP</button>
+            </div>
+            <div class="dropzone-cancel">
+                <button type="button" id="cancel-button">Cancel</button>
+            </div>
+        </form>
+
+        <!-- Description -->
+        <section class="description">
+            <h1>About This Tool</h1>
+            <p>This tool allows you to easily upload and convert image files to different formats. Simply drag and drop your file into the dropzone, or click to upload. You can then choose to convert your image to PNG, JPG, SVG, or WebP formats with just
+                a click of a button.</p>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
