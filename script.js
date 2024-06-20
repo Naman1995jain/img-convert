@@ -1,11 +1,10 @@
 const dropzoneBox = document.getElementsByClassName("dropzone-box")[0];
-const inputFiles = document.querySelectorAll(
-    ".dropzone-area input[type='file']"
-);
+const inputFiles = document.querySelectorAll(".dropzone-area input[type='file']");
 const inputElement = inputFiles[0];
 const dropZoneElement = inputElement.closest(".dropzone-area");
 
 inputElement.addEventListener("change", (e) => {
+    console.log("File input changed", inputElement.files);
     if (inputElement.files.length) {
         updateDropzoneFileList(dropZoneElement, inputElement.files[0]);
     }
@@ -13,23 +12,24 @@ inputElement.addEventListener("change", (e) => {
 
 dropZoneElement.addEventListener("dragover", (e) => {
     e.preventDefault();
+    console.log("File dragged over");
     dropZoneElement.classList.add("dropzone--over");
 });
 
 ["dragleave", "dragend"].forEach((type) => {
     dropZoneElement.addEventListener(type, (e) => {
+        console.log(`File ${type}`);
         dropZoneElement.classList.remove("dropzone--over");
     });
 });
 
 dropZoneElement.addEventListener("drop", (e) => {
     e.preventDefault();
-
+    console.log("File dropped", e.dataTransfer.files);
     if (e.dataTransfer.files.length) {
         inputElement.files = e.dataTransfer.files;
         updateDropzoneFileList(dropZoneElement, e.dataTransfer.files[0]);
     }
-
     dropZoneElement.classList.remove("dropzone--over");
 });
 
@@ -39,6 +39,7 @@ const updateDropzoneFileList = (dropzoneElement, file) => {
     if (file.type.startsWith("image/")) {
         const reader = new FileReader();
         reader.onload = (e) => {
+            console.log("File read successfully", e.target.result);
             dropzoneFileMessage.innerHTML = `
                 <img src="${e.target.result}" alt="${file.name}" style="max-width: 100%; height: auto;"/>
                 <p>File size: ${(file.size / 1024 / 1024).toFixed(2)} MB</p>
@@ -62,6 +63,7 @@ const convertImage = (format) => {
     const img = new Image();
     const reader = new FileReader();
     reader.onload = (e) => {
+        console.log("Image loaded for conversion", e.target.result);
         img.src = e.target.result;
         img.onload = () => {
             const canvas = document.createElement('canvas');
